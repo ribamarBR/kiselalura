@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proteção de Dados e Privacidade Digital | Guia Interativo & LGPD</title>
+  <meta name="description" content="Aprenda a proteger seus dados pessoais na internet, conheça seus direitos na LGPD e teste sua segurança digital com ferramentas interativas." />
+
+  <!-- Importação das fontes modernas Plus Jakarta Sans e Inter via Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Carregamento do Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Configuração personalizada de tipografia e paleta no Tailwind CSS -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              900: '#070d19',
+              950: '#040811',
+            }
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-cyan-500/30 selection:text-cyan-200 overflow-x-hidden">
+
+  <!-- ===================================================================== -->
+  <!-- 1. BARRA DE NAVEGAÇÃO FIXA NO TOPO                                    -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- Logotipo / Marca -->
+        <a href="#inicio" class="flex items-center gap-3 group focus:outline-none">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-500 p-0.5 shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-all">
+            <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
+              <!-- Ícone SVG de Escudo Digital -->
+              <svg class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+              </svg>
+            </div>
+          </div>
+          <div>
+            <span class="font-display font-bold text-lg sm:text-xl tracking-tight text-white">Escudo<span class="text-cyan-400">Digital</span></span>
+            <span class="hidden sm:block text-[11px] text-slate-400 leading-none">Privacidade &amp; LGPD</span>
+          </div>
+        </a>
+
+        <!-- Menu de Navegação Desktop -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Navegação principal">
+          <a href="#lgpd" class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-cyan-300 hover:bg-slate-800/70 transition-colors">
+            Dados &amp; LGPD
+          </a>
+          <a href="#senha" class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-cyan-300 hover:bg-slate-800/70 transition-colors">
+            Força de Senha
+          </a>
+          <a href="#checklist" class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-cyan-300 hover:bg-slate-800/70 transition-colors">
+            Hábitos Seguros
+          </a>
+          <a href="#phishing" class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-cyan-300 hover:bg-slate-800/70 transition-colors">
+            Desafio Phishing
+          </a>
+        </nav>
+
+        <!-- Botão CTA Desktop & Botão Menu Mobile -->
+        <div class="flex items-center gap-3">
+          <a href="#senha" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 shadow-md shadow-cyan-500/20 transition-all">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+            </svg>
+            Testar Agora
+          </a>
+
+          <!-- Botão Hambúrguer para Telas Pequenas -->
+          <button
+            id="mobile-menu-btn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Abrir menu de navegação"
+            class="md:hidden p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+          >
+            <svg id="icon-menu-open" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <svg id="icon-menu-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu Mobile Expansível -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-slate-950/95 px-4 pt-3 pb-5 space-y-1.5">
+      <a href="#lgpd" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-slate-800/80 hover:text-cyan-300">
+        1. Dados Pessoais &amp; LGPD
+      </a>
+      <a href="#senha" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-slate-800/80 hover:text-cyan-300">
+        2. Analisador de Força de Senha
+      </a>
+      <a href="#checklist" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-slate-800/80 hover:text-cyan-300">
+        3. Checklist de Hábitos Seguros
+      </a>
+      <a href="#phishing" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-slate-800/80 hover:text-cyan-300">
+        4. Desafio: Seguro ou Golpe?
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================================================================== -->
+    <!-- 2. HERO SECTION (APRESENTAÇÃO E AÇÃO RÁPIDA)                          -->
+    <!-- ===================================================================== -->
+    <section id="inicio" class="relative pt-12 pb-20 sm:pt-20 sm:pb-28 overflow-hidden border-b border-slate-800/70">
+      <!-- Elementos decorativos de luz suave no fundo -->
+      <div class="pointer-events-none absolute -top-24 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+      <div class="pointer-events-none absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <!-- Coluna de Texto Principal -->
+          <div class="lg:col-span-7 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/90 border border-cyan-500/30 text-cyan-300 text-xs sm:text-sm font-medium mb-6 shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Guia Interativo de Segurança &amp; Cidadania Digital
+            </div>
+
+            <h1 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl tracking-tight text-white leading-[1.12] mb-6">
+              Proteção de Dados:
+              <span class="block mt-1 bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">
+                Sua Privacidade no Mundo Digital
+              </span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-8">
+              Cada clique, cadastro ou mensagem deixa rastros digitais. Entenda como proteger suas informações pessoais contra vazamentos e golpes virtuais, conheça seus direitos garantidos pela <strong class="text-white font-semibold">LGPD</strong> e avalie seus hábitos de segurança em tempo real.
+            </p>
+
+            <!-- Botões de Ação Rápida -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-4">
+              <a href="#senha" class="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl text-base font-bold text-slate-950 bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 shadow-lg shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Testar Minha Segurança
+              </a>
+
+              <a href="#lgpd" class="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl text-base font-semibold text-slate-100 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-cyan-500/50 transition-all">
+                <svg class="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                </svg>
+                Explorar Guia
+              </a>
+            </div>
+          </div>
+
+          <!-- Coluna Visual: Painel Resumo de Pilares da Privacidade -->
+          <div class="lg:col-span-5">
+            <div class="bg-slate-900/80 backdrop-blur-sm border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-slate-950/80">
+              <div class="flex items-center justify-between pb-5 mb-6 border-b border-slate-800">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 class="font-display font-bold text-white text-base">Pilares da Defesa Digital</h2>
+                    <p class="text-xs text-slate-400">O que você vai dominar neste guia</p>
+                  </div>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/20">
+                  4 Módulos
+                </span>
+              </div>
+
+              <div class="space-y-4">
+                <!-- Item 1 -->
+                <a href="#lgpd" class="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800/80 hover:border-cyan-500/40 transition-all group">
+                  <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-400 font-bold text-sm flex items-center justify-center shrink-0 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors">01</span>
+                  <div>
+                    <h3 class="text-sm font-semibold text-white group-hover:text-cyan-300 transition-colors">Direitos Garantidos pela LGPD</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">Diferença entre dados comuns e sensíveis e como controlar seus registros.</p>
+                  </div>
+                </a>
+
+                <!-- Item 2 -->
+                <a href="#senha" class="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800/80 hover:border-cyan-500/40 transition-all group">
+                  <span class="w-8 h-8 rounded-xl bg-cyan-500/15 text-cyan-400 font-bold text-sm flex items-center justify-center shrink-0 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors">02</span>
+                  <div>
+                    <h3 class="text-sm font-semibold text-white group-hover:text-cyan-300 transition-colors">Analisador Local de Senhas</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">Teste a resistência de senhas em tempo real sem enviar nada pela rede.</p>
+                  </div>
+                </a>
+
+                <!-- Item 3 -->
+                <a href="#checklist" class="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800/80 hover:border-emerald-500/40 transition-all group">
+                  <span class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-400 font-bold text-sm flex items-center justify-center shrink-0 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-colors">03</span>
+                  <div>
+                    <h3 class="text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors">Índice de Proteção Digital</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">Checklist interativo para medir seus hábitos diários de segurança.</p>
+                  </div>
+                </a>
+
+                <!-- Item 4 -->
+                <a href="#phishing" class="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800/80 hover:border-emerald-500/40 transition-all group">
+                  <span class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-400 font-bold text-sm flex items-center justify-center shrink-0 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-colors">04</span>
+                  <div>
+                    <h3 class="text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors">Simulador Anti-Phishing</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">Pratique identificando golpes digitais em 4 cenários reais do cotidiano.</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 3. SEÇÃO EDUCATIVA: DADOS PESSOAIS, DADOS SENSÍVEIS E LGPD            -->
+    <!-- ===================================================================== -->
+    <section id="lgpd" class="py-16 sm:py-24 border-b border-slate-800/70 bg-slate-950">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Cabeçalho da Seção -->
+        <div class="max-w-3xl mx-auto text-center mb-14">
+          <span class="inline-block px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-3">
+            Conhecimento é Proteção
+          </span>
+          <h2 class="font-display font-bold text-2xl sm:text-4xl text-white mb-4">
+            Entenda seus Dados Pessoais e a LGPD
+          </h2>
+          <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+            A <strong class="text-cyan-300">Lei Geral de Proteção de Dados (Lei nº 13.709/2018)</strong> garante que você seja o verdadeiro titular das suas informações. Saber distinguir cada tipo de dado ajuda a decidir o que compartilhar.
+          </p>
+        </div>
+
+        <!-- Cards Comparativos: Dados Pessoais vs Dados Pessoais Sensíveis -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-14">
+          <!-- Card 1: Dados Pessoais -->
+          <article class="bg-slate-900/75 border border-slate-800 hover:border-cyan-500/40 rounded-3xl p-6 sm:p-8 transition-all shadow-xl">
+            <div class="flex items-center gap-4 mb-5">
+              <div class="w-12 h-12 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                </svg>
+              </div>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-cyan-400">Categoria 01</span>
+                <h3 class="font-display font-bold text-xl sm:text-2xl text-white">Dados Pessoais</h3>
+              </div>
+            </div>
+
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+              São quaisquer informações relacionadas a uma pessoa natural identificada ou que possa ser identificada direta ou indiretamente por meio do cruzamento de dados.
+            </p>
+
+            <div class="space-y-3">
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Exemplos comuns no dia a dia:</p>
+              <div class="flex flex-wrap gap-2.5">
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-sm text-slate-200">
+                  <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Nome completo e apelido
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-sm text-slate-200">
+                  <span class="w-2 h-2 rounded-full bg-cyan-400"></span> CPF, RG e CNH
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-sm text-slate-200">
+                  <span class="w-2 h-2 rounded-full bg-cyan-400"></span> E-mail e telefone
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-sm text-slate-200">
+                  <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Endereço residencial
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-sm text-slate-200">
+                  <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Localização GPS e IP
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: Dados Pessoais Sensíveis -->
+          <article class="bg-slate-900/75 border border-slate-800 hover:border-amber-500/40 rounded-3xl p-6 sm:p-8 transition-all shadow-xl">
+            <div class="flex items-center gap-4 mb-5">
+              <div class="w-12 h-12 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.33" />
+                </svg>
+              </div>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-amber-400">Categoria 02 • Proteção Reforçada</span>
+                <h3 class="font-display font-bold text-xl sm:text-2xl text-white">Dados Pessoais Sensíveis</h3>
+              </div>
+            </div>
+
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+              Informações íntimas que, se vazadas ou usadas indevidamente, podem gerar <strong class="text-amber-200">discriminação, preconceito ou riscos graves</strong> à integridade do titular. Exigem rigor máximo de segurança.
+            </p>
+
+            <div class="space-y-3">
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Exemplos protegidos com rigor extra:</p>
+              <div class="flex flex-wrap gap-2.5">
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-950 border border-amber-500/20 text-sm text-amber-100">
+                  <span class="w-2 h-2 rounded-full bg-amber-400"></span> Dados de saúde e exames
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-950 border border-amber-500/20 text-sm text-amber-100">
+                  <span class="w-2 h-2 rounded-full bg-amber-400"></span> Biometria (digital e facial)
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-950 border border-amber-500/20 text-sm text-amber-100">
+                  <span class="w-2 h-2 rounded-full bg-amber-400"></span> Crenças religiosas e filosóficas
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-950 border border-amber-500/20 text-sm text-amber-100">
+                  <span class="w-2 h-2 rounded-full bg-amber-400"></span> Origem racial ou étnica
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-950 border border-amber-500/20 text-sm text-amber-100">
+                  <span class="w-2 h-2 rounded-full bg-amber-400"></span> Opinião política e dados genéticos
+                </span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Quadro Resumo: Principais Direitos do Cidadão na LGPD -->
+        <div class="bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/30 border border-slate-800 rounded-3xl p-6 sm:p-10">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-8 border-b border-slate-800">
+            <div>
+              <h3 class="font-display font-bold text-xl sm:text-2xl text-white">
+                Seus 4 Pilares de Direitos na LGPD
+              </h3>
+              <p class="text-sm text-slate-300 mt-1">
+                Toda empresa ou órgão público que coleta seus dados no Brasil deve respeitar estas garantias:
+              </p>
+            </div>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 text-xs font-semibold self-start md:self-auto">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Garantido por Lei Federal
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Direito 1: Consentimento -->
+            <div class="bg-slate-950/80 border border-slate-800/90 rounded-2xl p-5 flex flex-col justify-between">
+              <div>
+                <div class="w-10 h-10 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center mb-4">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                  </svg>
+                </div>
+                <h4 class="font-display font-bold text-white text-base mb-2">1. Consentimento Claro</h4>
+                <p class="text-sm text-slate-300 leading-relaxed">
+                  Você precisa ser informado de forma transparente sobre <strong>por que</strong> seus dados estão sendo coletados antes de autorizar o uso.
+                </p>
+              </div>
+              <p class="mt-4 pt-3 border-t border-slate-800/80 text-xs text-cyan-400 font-medium">
+                Sem letras miúdas ocultas
+              </p>
+            </div>
+
+            <!-- Direito 2: Acesso -->
+            <div class="bg-slate-950/80 border border-slate-800/90 rounded-2xl p-5 flex flex-col justify-between">
+              <div>
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center mb-4">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <h4 class="font-display font-bold text-white text-base mb-2">2. Acesso e Consulta</h4>
+                <p class="text-sm text-slate-300 leading-relaxed">
+                  Você tem o direito de perguntar a qualquer empresa quais informações ela guarda sobre você e com quem as compartilhou.
+                </p>
+              </div>
+              <p class="mt-4 pt-3 border-t border-slate-800/80 text-xs text-emerald-400 font-medium">
+                Transparência total ao titular
+              </p>
+            </div>
+
+            <!-- Direito 3: Correção -->
+            <div class="bg-slate-950/80 border border-slate-800/90 rounded-2xl p-5 flex flex-col justify-between">
+              <div>
+                <div class="w-10 h-10 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center mb-4">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                  </svg>
+                </div>
+                <h4 class="font-display font-bold text-white text-base mb-2">3. Correção de Dados</h4>
+                <p class="text-sm text-slate-300 leading-relaxed">
+                  Notou algum dado errado, incompleto ou desatualizado em um cadastro? Você pode exigir a retificação imediata.
+                </p>
+              </div>
+              <p class="mt-4 pt-3 border-t border-slate-800/80 text-xs text-cyan-400 font-medium">
+                Registros sempre exatos
+              </p>
+            </div>
+
+            <!-- Direito 4: Exclusão -->
+            <div class="bg-slate-950/80 border border-slate-800/90 rounded-2xl p-5 flex flex-col justify-between">
+              <div>
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center mb-4">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                  </svg>
+                </div>
+                <h4 class="font-display font-bold text-white text-base mb-2">4. Exclusão e Revogação</h4>
+                <p class="text-sm text-slate-300 leading-relaxed">
+                  Você pode cancelar sua autorização a qualquer momento e solicitar que seus dados pessoais sejam apagados da base.
+                </p>
+              </div>
+              <p class="mt-4 pt-3 border-t border-slate-800/80 text-xs text-emerald-400 font-medium">
+                Controle total para sair
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 4. FERRAMENTA INTERATIVA 1: ANALISADOR DE FORÇA DE SENHA              -->
+    <!-- ===================================================================== -->
+    <section id="senha" class="py-16 sm:py-24 border-b border-slate-800/70 bg-slate-900/40">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Cabeçalho da Ferramenta -->
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="inline-block px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3">
+            Ferramenta Interativa 01
+          </span>
+          <h2 class="font-display font-bold text-2xl sm:text-4xl text-white mb-3">
+            Analisador de Força de Senha
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base">
+            Descubra em tempo real se uma senha possui complexidade suficiente para resistir a ataques automatizados.
+          </p>
+        </div>
+
+        <!-- Card Principal do Analisador -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl">
+          <!-- Aviso de Privacidade Local -->
+          <div class="flex items-start sm:items-center gap-3 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 mb-7">
+            <svg class="w-6 h-6 text-emerald-400 shrink-0 mt-0.5 sm:mt-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+            </svg>
+            <p class="text-xs sm:text-sm text-emerald-200 leading-relaxed">
+              <strong class="font-semibold text-emerald-300">100% Privado no seu Navegador:</strong> Nenhuma senha digitada aqui é enviada pela internet, salva em servidores ou registrada. Toda a verificação acontece localmente no seu dispositivo.
+            </p>
+          </div>
+
+          <!-- Campo de Input com Mostrar/Ocultar e Limpar -->
+          <div class="mb-6">
+            <label for="password-input" class="block text-sm font-semibold text-slate-200 mb-2">
+              Digite uma senha de teste para analisar:
+            </label>
+            <div class="relative flex items-center">
+              <input
+                id="password-input"
+                type="password"
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="Ex: MinhaSenha@2026!"
+                class="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/25 rounded-2xl py-4 pl-4 pr-28 text-base sm:text-lg text-white placeholder-slate-500 outline-none transition-all"
+              />
+              <div class="absolute right-2 flex items-center gap-1">
+                <!-- Botão Limpar -->
+                <button
+                  id="clear-password-btn"
+                  type="button"
+                  title="Limpar campo"
+                  aria-label="Limpar campo de senha"
+                  class="hidden p-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                >
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+                <!-- Botão Mostrar/Ocultar Senha -->
+                <button
+                  id="toggle-password-btn"
+                  type="button"
+                  title="Mostrar ou ocultar senha"
+                  aria-label="Mostrar senha"
+                  class="p-2.5 rounded-xl text-slate-400 hover:text-cyan-300 hover:bg-slate-800 transition-colors"
+                >
+                  <!-- Ícone Olho Aberto -->
+                  <svg id="eye-open-icon" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <!-- Ícone Olho Fechado -->
+                  <svg id="eye-closed-icon" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Barra de Progresso Dinâmica -->
+          <div class="mb-8">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+              <div class="flex items-center gap-2">
+                <span class="text-sm text-slate-400">Nível de segurança:</span>
+                <span id="strength-label" class="text-sm font-bold text-slate-400">Aguardando senha</span>
+              </div>
+              <span id="strength-chars" class="text-xs font-medium text-slate-400">0 caracteres</span>
+            </div>
+
+            <div class="w-full h-3 bg-slate-950 rounded-full overflow-hidden border border-slate-800 p-0.5">
+              <div id="strength-bar" class="h-full w-0 rounded-full bg-slate-600 transition-all duration-300"></div>
+            </div>
+
+            <p id="strength-tip" class="mt-3 text-xs sm:text-sm text-slate-300">
+              Dica: Crie uma "frase-senha" combinando 3 ou 4 palavras aleatórias com números e símbolos (ex: <code class="px-1.5 py-0.5 rounded bg-slate-950 text-cyan-300">Cafe!Nuvem#48Sol</code>).
+            </p>
+          </div>
+
+          <!-- Checklist em Tempo Real dos 5 Critérios -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+            <!-- Critério 1: Mínimo 12 caracteres -->
+            <div id="crit-length" class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 transition-colors">
+              <span class="crit-icon w-6 h-6 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center shrink-0">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <span class="crit-text text-sm text-slate-300">Mínimo 12 caracteres</span>
+            </div>
+
+            <!-- Critério 2: Letras Maiúsculas -->
+            <div id="crit-upper" class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 transition-colors">
+              <span class="crit-icon w-6 h-6 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center shrink-0">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <span class="crit-text text-sm text-slate-300">Letras maiúsculas (A-Z)</span>
+            </div>
+
+            <!-- Critério 3: Letras Minúsculas -->
+            <div id="crit-lower" class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 transition-colors">
+              <span class="crit-icon w-6 h-6 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center shrink-0">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <span class="crit-text text-sm text-slate-300">Letras minúsculas (a-z)</span>
+            </div>
+
+            <!-- Critério 4: Números -->
+            <div id="crit-number" class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 transition-colors">
+              <span class="crit-icon w-6 h-6 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center shrink-0">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <span class="crit-text text-sm text-slate-300">Números (0-9)</span>
+            </div>
+
+            <!-- Critério 5: Símbolos Especiais -->
+            <div id="crit-symbol" class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 transition-colors sm:col-span-2 lg:col-span-2">
+              <span class="crit-icon w-6 h-6 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center shrink-0">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <span class="crit-text text-sm text-slate-300">Símbolos especiais (!@#$%&amp;*?)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 5. FERRAMENTA INTERATIVA 2: CHECKLIST DE HÁBITOS SEGUROS              -->
+    <!-- ===================================================================== -->
+    <section id="checklist" class="py-16 sm:py-24 border-b border-slate-800/70 bg-slate-950">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Cabeçalho -->
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="inline-block px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-3">
+            Ferramenta Interativa 02
+          </span>
+          <h2 class="font-display font-bold text-2xl sm:text-4xl text-white mb-3">
+            Checklist de Hábitos Seguros
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base">
+            Marque as práticas que você já adota no dia a dia e acompanhe o seu <strong class="text-emerald-400">Índice de Proteção Digital</strong>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Coluna Esquerda: Medidor Percentual Dinâmico -->
+          <div class="lg:col-span-4 lg:sticky lg:top-24">
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 text-center shadow-xl">
+              <h3 class="font-display font-bold text-lg text-white mb-1">Índice de Proteção Digital</h3>
+              <p class="text-xs text-slate-400 mb-6">Atualizado conforme suas escolhas</p>
+
+              <!-- Medidor Circular SVG -->
+              <div class="relative w-44 h-44 mx-auto mb-6 flex items-center justify-center">
+                <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120" aria-hidden="true">
+                  <!-- Trilha de Fundo -->
+                  <circle cx="60" cy="60" r="52" fill="none" stroke="#1e293b" stroke-width="10" />
+                  <!-- Arco de Progresso -->
+                  <circle
+                    id="habit-ring"
+                    cx="60"
+                    cy="60"
+                    r="52"
+                    fill="none"
+                    stroke="#22d3ee"
+                    stroke-width="10"
+                    stroke-linecap="round"
+                    stroke-dasharray="326.73"
+                    stroke-dashoffset="326.73"
+                    class="transition-all duration-500 ease-out"
+                  />
+                </svg>
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                  <span id="habit-percentage" class="font-display font-extrabold text-4xl text-white">0%</span>
+                  <span id="habit-count" class="text-xs text-slate-400 mt-0.5">0 de 6 hábitos</span>
+                </div>
+              </div>
+
+              <!-- Status Badge e Mensagem -->
+              <div class="mb-6">
+                <span id="habit-status-badge" class="inline-block px-3.5 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-bold mb-2">
+                  Nível Inicial
+                </span>
+                <p id="habit-feedback-text" class="text-sm text-slate-300 leading-relaxed">
+                  Selecione ao lado os hábitos digitais que você já pratica para calcular seu nível de proteção.
+                </p>
+              </div>
+
+              <button
+                id="reset-habits-btn"
+                type="button"
+                class="w-full py-3 px-4 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white transition-colors"
+              >
+                Limpar Seleção
+              </button>
+            </div>
+          </div>
+
+          <!-- Coluna Direita: Lista Clicável de Hábitos Seguros -->
+          <div class="lg:col-span-8 space-y-3.5" id="habits-list">
+            <!-- Hábito 1 -->
+            <label class="habit-card flex items-start gap-4 p-4 sm:p-5 rounded-2xl bg-slate-900/75 border border-slate-800 hover:border-cyan-500/40 cursor-pointer transition-all select-none">
+              <input type="checkbox" class="habit-checkbox peer sr-only" />
+              <span class="mt-0.5 w-6 h-6 rounded-lg border-2 border-slate-600 bg-slate-950 peer-checked:bg-emerald-500 peer-checked:border-emerald-500 flex items-center justify-center text-slate-950 transition-colors shrink-0">
+                <svg class="w-4 h-4 opacity-0 peer-checked:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <span class="font-display font-bold text-white text-base">Ativar Autenticação em Dois Fatores (2FA)</span>
+                  <span class="px-2.5 py-0.5 rounded-md bg-cyan-500/10 text-cyan-300 text-xs font-medium">Essencial</span>
+                </div>
+                <p class="text-sm text-slate-300 mt-1">
+                  Uso aplicativo autenticador (como Google Authenticator ou Authy) ou chave física no e-mail principal, bancos e redes sociais.
+                </p>
+              </div>
+            </label>
+
+            <!-- Hábito 2 -->
+            <label class="habit-card flex items-start gap-4 p-4 sm:p-5 rounded-2xl bg-slate-900/75 border border-slate-800 hover:border-cyan-500/40 cursor-pointer transition-all select-none">
+              <input type="checkbox" class="habit-checkbox peer sr-only" />
+              <span class="mt-0.5 w-6 h-6 rounded-lg border-2 border-slate-600 bg-slate-950 peer-checked:bg-emerald-500 peer-checked:border-emerald-500 flex items-center justify-center text-slate-950 transition-colors shrink-0">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <span class="font-display font-bold text-white text-base">Revisar permissões de aplicativos</span>
+                  <span class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-300 text-xs font-medium">Privacidade</span>
+                </div>
+                <p class="text-sm text-slate-300 mt-1">
+                  Verifico quais apps no celular têm acesso à localização, câmera, microfone e contatos, bloqueando permissões desnecessárias.
+                </p>
+              </div>
+            </label>
+
+            <!-- Hábito 3 -->
+            <label class="habit-card flex items-start gap-4 p-4 sm:p-5 rounded-2xl bg-slate-900/75 border border-slate-800 hover:border-cyan-500/40 cursor-pointer transition-all select-none">
+              <input type="checkbox" class="habit-checkbox peer sr-only" />
+              <span class="mt-0.5 w-6 h-6 rounded-lg border-2 border-slate-600 bg-slate-950 peer-checked:bg-emerald-500 peer-checked:border-emerald-500 flex items-center justify-center text-slate-950 transition-colors shrink-0">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <span class="font-display font-bold text-white text-base">Manter sistemas e aplicativos atualizados</span>
+                  <span class="px-2.5 py-0.5 rounded-md bg-cyan-500/10 text-cyan-300 text-xs font-medium">Prevenção</span>
+                </div>
+                <p class="text-sm text-slate-300 mt-1">
+                  Instalo atualizações do celular, computador e navegador assim que saem para corrigir falhas de segurança conhecidas.
+                </p>
+              </div>
+            </label>
+
+            <!-- Hábito 4 -->
+            <label class="habit-card flex items-start gap-4 p-4 sm:p-5 rounded-2xl bg-slate-900/75 border border-slate-800 hover:border-cyan-500/40 cursor-pointer transition-all select-none">
+              <input type="checkbox" class="habit-checkbox peer sr-only" />
+              <span class="mt-0.5 w-6 h-6 rounded-lg border-2 border-slate-600 bg-slate-950 peer-checked:bg-emerald-500 peer-checked:border-emerald-500 flex items-center justify-center text-slate-950 transition-colors shrink-0">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <span class="font-display font-bold text-white text-base">Evitar redes Wi-Fi públicas sem proteção</span>
+                  <span class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-300 text-xs font-medium">Conexão</span>
+                </div>
+                <p class="text-sm text-slate-300 mt-1">
+                  Não acesso aplicativos bancários nem digito senhas importantes em redes Wi-Fi abertas de shoppings, cafés ou aeroportos.
+                </p>
+              </div>
+            </label>
+
+            <!-- Hábito 5 -->
+            <label class="habit-card flex items-start gap-4 p-4 sm:p-5 rounded-2xl bg-slate-900/75 border border-slate-800 hover:border-cyan-500/40 cursor-pointer transition-all select-none">
+              <input type="checkbox" class="habit-checkbox peer sr-only" />
+              <span class="mt-0.5 w-6 h-6 rounded-lg border-2 border-slate-600 bg-slate-950 peer-checked:bg-emerald-500 peer-checked:border-emerald-500 flex items-center justify-center text-slate-950 transition-colors shrink-0">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <span class="font-display font-bold text-white text-base">Verificar links e remetentes antes de clicar</span>
+                  <span class="px-2.5 py-0.5 rounded-md bg-cyan-500/10 text-cyan-300 text-xs font-medium">Anti-Golpe</span>
+                </div>
+                <p class="text-sm text-slate-300 mt-1">
+                  Confero sempre o endereço real do site e desconfio de mensagens urgentes pedindo confirmação urgente de dados.
+                </p>
+              </div>
+            </label>
+
+            <!-- Hábito 6 -->
+            <label class="habit-card flex items-start gap-4 p-4 sm:p-5 rounded-2xl bg-slate-900/75 border border-slate-800 hover:border-cyan-500/40 cursor-pointer transition-all select-none">
+              <input type="checkbox" class="habit-checkbox peer sr-only" />
+              <span class="mt-0.5 w-6 h-6 rounded-lg border-2 border-slate-600 bg-slate-950 peer-checked:bg-emerald-500 peer-checked:border-emerald-500 flex items-center justify-center text-slate-950 transition-colors shrink-0">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <span class="font-display font-bold text-white text-base">Usar senhas únicas em cada serviço</span>
+                  <span class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-300 text-xs font-medium">Credenciais</span>
+                </div>
+                <p class="text-sm text-slate-300 mt-1">
+                  Nunca repito a mesma senha em sites diferentes, evitando que o vazamento de uma conta comprometa todas as outras.
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 6. FERRAMENTA INTERATIVA 3: DESAFIO RÁPIDO - SEGURO OU GOLPE?         -->
+    <!-- ===================================================================== -->
+    <section id="phishing" class="py-16 sm:py-24 bg-slate-900/40">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Cabeçalho -->
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="inline-block px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3">
+            Ferramenta Interativa 03
+          </span>
+          <h2 class="font-display font-bold text-2xl sm:text-4xl text-white mb-3">
+            Desafio Rápido: Seguro ou Golpe (Phishing)?
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base">
+            Analise os 4 cenários reais abaixo e decida se cada situação é segura ou representa uma armadilha digital.
+          </p>
+        </div>
+
+        <!-- Barra de Placar em Tempo Real -->
+        <div class="flex flex-wrap items-center justify-between gap-4 bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:px-6 mb-8">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center font-display font-bold">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400">Progresso do Desafio</p>
+              <p class="text-sm sm:text-base font-bold text-white">
+                <span id="quiz-answered-count">0</span> de 4 cenários respondidos
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="text-right">
+              <p class="text-xs text-slate-400">Sua Pontuação</p>
+              <p class="text-base sm:text-lg font-display font-extrabold text-emerald-400">
+                <span id="quiz-score">0</span> / 4 acertos
+              </p>
+            </div>
+            <button
+              id="reset-quiz-btn"
+              type="button"
+              class="px-4 py-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-200 transition-colors"
+            >
+              Reiniciar
+            </button>
+          </div>
+        </div>
+
+        <!-- Grade com os 4 Cenários Práticos -->
+        <div id="quiz-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Os cards de cenário serão renderizados dinamicamente via JavaScript -->
+        </div>
+
+        <!-- Painel de Resultado Final (Exibido ao concluir os 4 cenários) -->
+        <div id="quiz-final-summary" class="hidden mt-8 bg-gradient-to-r from-slate-900 via-slate-900 to-emerald-950/40 border border-emerald-500/35 rounded-3xl p-6 sm:p-8 shadow-2xl">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div>
+              <span id="quiz-rank-badge" class="inline-block px-3.5 py-1 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold uppercase tracking-wider mb-2">
+                Desafio Concluído!
+              </span>
+              <h3 id="quiz-final-title" class="font-display font-bold text-xl sm:text-2xl text-white mb-2">
+                Excelente olhar atento!
+              </h3>
+              <p id="quiz-final-message" class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
+                Você completou todos os cenários práticos. Continue aplicando essa atenção antes de clicar em links ou conceder permissões.
+              </p>
+            </div>
+            <button
+              id="retry-quiz-btn"
+              type="button"
+              class="shrink-0 px-6 py-3.5 rounded-2xl font-bold text-sm text-slate-950 bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 shadow-lg shadow-emerald-500/20 transition-all"
+            >
+              Refazer Desafio
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- 7. RODAPÉ EDUCATIVO (CIDADANIA DIGITAL)                               -->
+  <!-- ===================================================================== -->
+  <footer class="bg-slate-950 border-t border-slate-800/80 pt-14 pb-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-10 border-b border-slate-800/80">
+        <!-- Resumo Educativo sobre Cidadania Digital -->
+        <div class="md:col-span-7">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center text-slate-950 font-bold">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+              </svg>
+            </div>
+            <span class="font-display font-bold text-lg text-white">Escudo<span class="text-cyan-400">Digital</span></span>
+          </div>
+          <h3 class="font-display font-bold text-base text-white mb-2">
+            Cidadania Digital e Boas Práticas Contínuas
+          </h3>
+          <p class="text-sm text-slate-400 leading-relaxed max-w-2xl">
+            A proteção de dados não é uma configuração única, mas um hábito contínuo. Exercer a cidadania digital significa cuidar das próprias informações, respeitar a privacidade de outras pessoas e questionar solicitações suspeitas na rede.
+          </p>
+        </div>
+
+        <!-- Links Rápidos -->
+        <div class="md:col-span-5 flex flex-col sm:flex-row md:justify-end gap-8">
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3">Navegação Rápida</h4>
+            <ul class="space-y-2 text-sm text-slate-400">
+              <li><a href="#inicio" class="hover:text-cyan-400 transition-colors">Início</a></li>
+              <li><a href="#lgpd" class="hover:text-cyan-400 transition-colors">Dados Pessoais &amp; LGPD</a></li>
+              <li><a href="#senha" class="hover:text-cyan-400 transition-colors">Analisador de Senha</a></li>
+              <li><a href="#checklist" class="hover:text-cyan-400 transition-colors">Checklist de Hábitos</a></li>
+              <li><a href="#phishing" class="hover:text-cyan-400 transition-colors">Desafio Anti-Phishing</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3">Lembrete de Ouro</h4>
+            <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 max-w-xs">
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Desconfie sempre de ofertas boas demais para ser verdade e nunca compartilhe códigos SMS ou senhas por telefone ou mensagem.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra Inferior -->
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <p>Projeto educativo sobre Proteção de Dados, Segurança da Informação e LGPD (Brasil).</p>
+        <a href="#inicio" class="inline-flex items-center gap-1.5 text-slate-400 hover:text-cyan-400 font-medium transition-colors">
+          Voltar ao topo
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT INTERATIVO (100% LOCAL NO NAVEGADOR)                       -->
+  <!-- ===================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        /* -------------------------------------------------------------------
+         * 1. MENU MOBILE RESPONSIVO
+         * ------------------------------------------------------------------- */
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconMenuOpen = document.getElementById('icon-menu-open');
+        const iconMenuClose = document.getElementById('icon-menu-close');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function toggleMobileMenu(forceClose = false) {
+          const isHidden = mobileMenu.classList.contains('hidden');
+          const shouldOpen = forceClose ? false : isHidden;
+
+          mobileMenu.classList.toggle('hidden', !shouldOpen);
+          iconMenuOpen.classList.toggle('hidden', shouldOpen);
+          iconMenuClose.classList.toggle('hidden', !shouldOpen);
+          mobileMenuBtn.setAttribute('aria-expanded', String(shouldOpen));
+        }
+
+        if (mobileMenuBtn) {
+          mobileMenuBtn.addEventListener('click', () => toggleMobileMenu());
+        }
+
+        mobileNavLinks.forEach((link) => {
+          link.addEventListener('click', () => toggleMobileMenu(true));
+        });
+
+        /* -------------------------------------------------------------------
+         * 2. FERRAMENTA 1: ANALISADOR DE FORÇA DE SENHA EM TEMPO REAL
+         * ------------------------------------------------------------------- */
+        const passwordInput = document.getElementById('password-input');
+        const togglePasswordBtn = document.getElementById('toggle-password-btn');
+        const clearPasswordBtn = document.getElementById('clear-password-btn');
+        const eyeOpenIcon = document.getElementById('eye-open-icon');
+        const eyeClosedIcon = document.getElementById('eye-closed-icon');
+
+        const strengthLabel = document.getElementById('strength-label');
+        const strengthChars = document.getElementById('strength-chars');
+        const strengthBar = document.getElementById('strength-bar');
+        const strengthTip = document.getElementById('strength-tip');
+
+        const criteriaElements = {
+          length: document.getElementById('crit-length'),
+          upper: document.getElementById('crit-upper'),
+          lower: document.getElementById('crit-lower'),
+          number: document.getElementById('crit-number'),
+          symbol: document.getElementById('crit-symbol'),
+        };
+
+        // Atualiza visual de cada item do checklist de senha
+        function updateCriterionState(element, isValid) {
+          if (!element) return;
+          const iconBox = element.querySelector('.crit-icon');
+          const textSpan = element.querySelector('.crit-text');
+
+          if (isValid) {
+            element.classList.remove('border-slate-800', 'bg-slate-950/80');
+            element.classList.add('border-emerald-500/40', 'bg-emerald-500/10');
+            iconBox.classList.remove('bg-slate-800', 'text-slate-400');
+            iconBox.classList.add('bg-emerald-500', 'text-slate-950');
+            textSpan.classList.remove('text-slate-300');
+            textSpan.classList.add('text-emerald-200', 'font-medium');
+          } else {
+            element.classList.add('border-slate-800', 'bg-slate-950/80');
+            element.classList.remove('border-emerald-500/40', 'bg-emerald-500/10');
+            iconBox.classList.add('bg-slate-800', 'text-slate-400');
+            iconBox.classList.remove('bg-emerald-500', 'text-slate-950');
+            textSpan.classList.add('text-slate-300');
+            textSpan.classList.remove('text-emerald-200', 'font-medium');
+          }
+        }
+
+        // Avalia a senha digitada e atualiza barra, nível e dicas
+        function analyzePassword(pwd) {
+          const len = pwd.length;
+          strengthChars.textContent = `${len} ${len === 1 ? 'caractere' : 'caracteres'}`;
+          clearPasswordBtn.classList.toggle('hidden', len === 0);
+
+          const checks = {
+            length: len >= 12,
+            upper: /[A-ZÀ-Ú]/.test(pwd),
+            lower: /[a-zà-ú]/.test(pwd),
+            number: /[0-9]/.test(pwd),
+            symbol: /[^A-Za-zÀ-Úà-ú0-9]/.test(pwd),
+          };
+
+          Object.keys(checks).forEach((key) => {
+            updateCriterionState(criteriaElements[key], checks[key]);
+          });
+
+          if (len === 0) {
+            strengthBar.style.width = '0%';
+            strengthBar.className = 'h-full w-0 rounded-full bg-slate-600 transition-all duration-300';
+            strengthLabel.textContent = 'Aguardando senha';
+            strengthLabel.className = 'text-sm font-bold text-slate-400';
+            strengthTip.innerHTML = 'Dica: Crie uma "frase-senha" combinando 3 ou 4 palavras aleatórias com números e símbolos (ex: <code class="px-1.5 py-0.5 rounded bg-slate-950 text-cyan-300">Cafe!Nuvem#48Sol</code>).';
+            return;
+          }
+
+          // Cálculo de pontuação equilibrado considerando critérios e comprimento
+          let score = 0;
+          if (checks.length) score += 2;
+          else if (len >= 8) score += 1;
+
+          if (checks.upper) score += 1;
+          if (checks.lower) score += 1;
+          if (checks.number) score += 1;
+          if (checks.symbol) score += 1;
+
+          // Penaliza senhas muito curtas (< 8 caracteres) mesmo que tenham símbolos
+          if (len < 8) {
+            score = Math.min(score, 2);
+          }
+
+          if (score <= 2) {
+            strengthBar.style.width = '25%';
+            strengthBar.className = 'h-full rounded-full bg-rose-500 transition-all duration-300';
+            strengthLabel.textContent = 'Fraca';
+            strengthLabel.className = 'text-sm font-bold text-rose-400';
+            strengthTip.textContent = 'Atenção: Senhas curtas ou simples podem ser descobertas rapidamente por programas automatizados. Aumente o tamanho e misture tipos de caracteres.';
+          } else if (score <= 4) {
+            strengthBar.style.width = '55%';
+            strengthBar.className = 'h-full rounded-full bg-amber-400 transition-all duration-300';
+            strengthLabel.textContent = 'Média';
+            strengthLabel.className = 'text-sm font-bold text-amber-300';
+            strengthTip.textContent = 'Bom começo, mas ainda pode melhorar! Tente atingir pelo menos 12 caracteres e incluir símbolos especiais.';
+          } else if (score === 5) {
+            strengthBar.style.width = '80%';
+            strengthBar.className = 'h-full rounded-full bg-cyan-400 transition-all duration-300';
+            strengthLabel.textContent = 'Forte';
+            strengthLabel.className = 'text-sm font-bold text-cyan-300';
+            strengthTip.textContent = 'Ótima senha! Ela oferece boa proteção contra tentativas de invasão. Complete todos os 5 critérios para atingir o nível máximo.';
+          } else {
+            strengthBar.style.width = '100%';
+            strengthBar.className = 'h-full rounded-full bg-emerald-400 transition-all duration-300';
+            strengthLabel.textContent = 'Muito Forte';
+            strengthLabel.className = 'text-sm font-bold text-emerald-400';
+            strengthTip.textContent = 'Excelente! Esta senha combina ótimo comprimento e variedade de caracteres. Lembre-se de nunca reutilizá-la em outros sites.';
+          }
+        }
+
+        if (passwordInput) {
+          passwordInput.addEventListener('input', (e) => analyzePassword(e.target.value));
+        }
+
+        if (togglePasswordBtn) {
+          togglePasswordBtn.addEventListener('click', () => {
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+            eyeOpenIcon.classList.toggle('hidden', isPassword);
+            eyeClosedIcon.classList.toggle('hidden', !isPassword);
+            togglePasswordBtn.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+          });
+        }
+
+        if (clearPasswordBtn) {
+          clearPasswordBtn.addEventListener('click', () => {
+            passwordInput.value = '';
+            analyzePassword('');
+            passwordInput.focus();
+          });
+        }
+
+        /* -------------------------------------------------------------------
+         * 3. FERRAMENTA 2: CHECKLIST INTERATIVO DE HÁBITOS SEGUROS
+         * ------------------------------------------------------------------- */
+        const habitCheckboxes = document.querySelectorAll('.habit-checkbox');
+        const habitRing = document.getElementById('habit-ring');
+        const habitPercentageEl = document.getElementById('habit-percentage');
+        const habitCountEl = document.getElementById('habit-count');
+        const habitStatusBadge = document.getElementById('habit-status-badge');
+        const habitFeedbackText = document.getElementById('habit-feedback-text');
+        const resetHabitsBtn = document.getElementById('reset-habits-btn');
+
+        const RING_CIRCUMFERENCE = 326.73; // 2 * Math.PI * 52
+
+        function updateHabitIndex() {
+          const total = habitCheckboxes.length;
+          let checkedCount = 0;
+
+          habitCheckboxes.forEach((checkbox) => {
+            const card = checkbox.closest('.habit-card');
+            if (checkbox.checked) {
+              checkedCount++;
+              card.classList.add('border-emerald-500/50', 'bg-emerald-950/20');
+              card.classList.remove('border-slate-800', 'bg-slate-900/75');
+            } else {
+              card.classList.remove('border-emerald-500/50', 'bg-emerald-950/20');
+              card.classList.add('border-slate-800', 'bg-slate-900/75');
+            }
+          });
+
+          const percentage = total > 0 ? Math.round((checkedCount / total) * 100) : 0;
+          const offset = RING_CIRCUMFERENCE - (percentage / 100) * RING_CIRCUMFERENCE;
+
+          habitRing.style.strokeDashoffset = String(offset);
+          habitPercentageEl.textContent = `${percentage}%`;
+          habitCountEl.textContent = `${checkedCount} de ${total} hábitos`;
+
+          if (percentage === 0) {
+            habitRing.setAttribute('stroke', '#38bdf8');
+            habitStatusBadge.textContent = 'Nível Inicial';
+            habitStatusBadge.className = 'inline-block px-3.5 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-bold mb-2';
+            habitFeedbackText.textContent = 'Selecione ao lado os hábitos digitais que você já pratica para calcular seu nível de proteção.';
+          } else if (percentage < 50) {
+            habitRing.setAttribute('stroke', '#fbbf24');
+            habitStatusBadge.textContent = 'Em Evolução';
+            habitStatusBadge.className = 'inline-block px-3.5 py-1 rounded-full bg-amber-500/15 text-amber-300 text-xs font-bold mb-2';
+            habitFeedbackText.textContent = 'Você já deu os primeiros passos! Que tal ativar o 2FA e revisar as permissões dos seus aplicativos hoje?';
+          } else if (percentage < 100) {
+            habitRing.setAttribute('stroke', '#22d3ee');
+            habitStatusBadge.textContent = 'Bem Protegido';
+            habitStatusBadge.className = 'inline-block px-3.5 py-1 rounded-full bg-cyan-500/15 text-cyan-300 text-xs font-bold mb-2';
+            habitFeedbackText.textContent = 'Ótimo nível de segurança! Complete os hábitos restantes para reduzir ainda mais sua exposição digital.';
+          } else {
+            habitRing.setAttribute('stroke', '#34d399');
+            habitStatusBadge.textContent = 'Blindagem Máxima';
+            habitStatusBadge.className = 'inline-block px-3.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold mb-2';
+            habitFeedbackText.textContent = 'Parabéns! Seus hábitos digitais seguem as melhores recomendações de privacidade e cibersegurança.';
+          }
+        }
+
+        habitCheckboxes.forEach((checkbox) => {
+          checkbox.addEventListener('change', updateHabitIndex);
+        });
+
+        if (resetHabitsBtn) {
+          resetHabitsBtn.addEventListener('click', () => {
+            habitCheckboxes.forEach((cb) => {
+              cb.checked = false;
+            });
+            updateHabitIndex();
+          });
+        }
+
+        /* -------------------------------------------------------------------
+         * 4. FERRAMENTA 3: DESAFIO RÁPIDO - SEGURO OU GOLPE (PHISHING)?
+         * ------------------------------------------------------------------- */
+        const quizScenarios = [
+          {
+            id: 1,
+            tag: 'Cenário 01 • E-mail Bancário',
+            title: 'Aviso Urgente de Bloqueio de Conta',
+            description:
+              'Você recebe um e-mail com o logotipo do seu banco dizendo: "URGENTE: Sua conta será bloqueada em 2 horas! Clique aqui para recadastrar sua senha e token agora." O remetente é suporte@banco-alerta-seguro.com.',
+            isSafe: false,
+            explanation:
+              'É Golpe (Phishing)! Bancos nunca pedem recadastro de senha ou token por links em e-mails alarmistas. Além disso, o domínio do remetente não pertence ao site oficial da instituição.',
+          },
+          {
+            id: 2,
+            tag: 'Cenário 02 • Aplicativo Mobile',
+            title: 'App de Lanterna Pedindo Contatos',
+            description:
+              'Você baixa um aplicativo simples de lanterna na loja do celular e, ao abrir, ele exige permissão obrigatória para acessar sua lista de contatos, histórico de chamadas e localização GPS.',
+            isSafe: false,
+            explanation:
+              'É Golpe / Risco de Privacidade! Uma lanterna precisa apenas do flash da câmera. Quando um app pede dados sem relação com sua função, o objetivo costuma ser coletar e vender suas informações.',
+          },
+          {
+            id: 3,
+            tag: 'Cenário 03 • Mensagem Premiada',
+            title: 'Link Encurtado Prometendo Prêmio Grátis',
+            description:
+              'Chega uma mensagem encaminhada no WhatsApp: "Parabéns! Você ganhou um vale-compras de R$ 500! Acesse bit.ly/resgate-premio-hoje e informe seu CPF e cartão para pagar apenas o frete."',
+            isSafe: false,
+            explanation:
+              'É Golpe (Phishing)! Links encurtados escondem o destino verdadeiro e promoções milagrosas que pedem CPF e dados de cartão são clássicas armadilhas para clonar cartões e roubar identidade.',
+          },
+          {
+            id: 4,
+            tag: 'Cenário 04 • Navegação Oficial',
+            title: 'Acesso Direto ao Portal Oficial com HTTPS',
+            description:
+              'Você digita manualmente no navegador o endereço oficial gov.br, confere que não há erros de ortografia no domínio e verifica o cadeado de conexão segura (HTTPS) antes de entrar na sua conta.',
+            isSafe: true,
+            explanation:
+              'É Seguro! Digitar o endereço oficial diretamente no navegador (sem clicar em links suspeitos) e conferir o domínio correto junto ao protocolo HTTPS protege sua conexão contra interceptações.',
+          },
+        ];
+
+        const quizContainer = document.getElementById('quiz-container');
+        const quizAnsweredCountEl = document.getElementById('quiz-answered-count');
+        const quizScoreEl = document.getElementById('quiz-score');
+        const quizFinalSummary = document.getElementById('quiz-final-summary');
+        const quizRankBadge = document.getElementById('quiz-rank-badge');
+        const quizFinalTitle = document.getElementById('quiz-final-title');
+        const quizFinalMessage = document.getElementById('quiz-final-message');
+        const resetQuizBtn = document.getElementById('reset-quiz-btn');
+        const retryQuizBtn = document.getElementById('retry-quiz-btn');
+
+        let userAnswers = {}; // Armazena { scenarioId: booleanUserChoice }
+
+        function renderQuiz() {
+          quizContainer.innerHTML = '';
+
+          quizScenarios.forEach((scenario) => {
+            const hasAnswered = Object.prototype.hasOwnProperty.call(userAnswers, scenario.id);
+            const userChoice = userAnswers[scenario.id];
+            const isCorrect = hasAnswered && userChoice === scenario.isSafe;
+
+            const card = document.createElement('article');
+            card.className =
+              'bg-slate-900 border rounded-3xl p-6 flex flex-col justify-between transition-all shadow-lg ' +
+              (hasAnswered
+                ? isCorrect
+                  ? 'border-emerald-500/50'
+                  : 'border-rose-500/50'
+                : 'border-slate-800');
+
+            // Parte superior: tag, título e descrição
+            const topContent = `
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-3">
+                  <span class="text-xs font-semibold text-cyan-400">${scenario.tag}</span>
+                  ${
+                    hasAnswered
+                      ? `<span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${
+                          isCorrect
+                            ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30'
+                            : 'bg-rose-500/15 text-rose-300 border border-rose-500/30'
+                        }">${isCorrect ? 'Você acertou!' : 'Resposta incorreta'}</span>`
+                      : ''
+                  }
+                </div>
+                <h3 class="font-display font-bold text-lg text-white mb-2.5">${scenario.title}</h3>
+                <p class="text-sm text-slate-300 leading-relaxed mb-6">${scenario.description}</p>
+              </div>
+            `;
+
+            // Botões de decisão ou caixa de explicação
+            let bottomContent = '';
+            if (!hasAnswered) {
+              bottomContent = `
+                <div class="grid grid-cols-2 gap-3 pt-2">
+                  <button
+                    type="button"
+                    data-id="${scenario.id}"
+                    data-choice="true"
+                    class="quiz-choice-btn py-3.5 px-4 rounded-2xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/35 text-emerald-300 font-bold text-sm flex items-center justify-center gap-2 transition-all"
+                  >
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    É Seguro
+                  </button>
+                  <button
+                    type="button"
+                    data-id="${scenario.id}"
+                    data-choice="false"
+                    class="quiz-choice-btn py-3.5 px-4 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/35 text-rose-300 font-bold text-sm flex items-center justify-center gap-2 transition-all"
+                  >
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                    </svg>
+                    É Golpe
+                  </button>
+                </div>
+              `;
+            } else {
+              bottomContent = `
+                <div class="p-4 rounded-2xl ${
+                  isCorrect
+                    ? 'bg-emerald-500/10 border border-emerald-500/25 text-emerald-100'
+                    : 'bg-rose-500/10 border border-rose-500/25 text-rose-100'
+                } text-xs sm:text-sm leading-relaxed">
+                  <strong class="block font-bold mb-1 ${isCorrect ? 'text-emerald-300' : 'text-rose-300'}">
+                    Por quê?
+                  </strong>
+                  ${scenario.explanation}
+                </div>
+              `;
+            }
+
+            card.innerHTML = topContent + bottomContent;
+            quizContainer.appendChild(card);
+          });
+
+          // Adiciona eventos aos botões recém-renderizados
+          document.querySelectorAll('.quiz-choice-btn').forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+              const id = Number(e.currentTarget.getAttribute('data-id'));
+              const choice = e.currentTarget.getAttribute('data-choice') === 'true';
+              userAnswers[id] = choice;
+              updateQuizStats();
+              renderQuiz();
+            });
+          });
+        }
+
+        function updateQuizStats() {
+          const answeredIds = Object.keys(userAnswers);
+          const answeredCount = answeredIds.length;
+          let correctCount = 0;
+
+          quizScenarios.forEach((sc) => {
+            if (Object.prototype.hasOwnProperty.call(userAnswers, sc.id) && userAnswers[sc.id] === sc.isSafe) {
+              correctCount++;
+            }
+          });
+
+          quizAnsweredCountEl.textContent = String(answeredCount);
+          quizScoreEl.textContent = String(correctCount);
+
+          if (answeredCount === quizScenarios.length) {
+            quizFinalSummary.classList.remove('hidden');
+
+            if (correctCount === 4) {
+              quizRankBadge.textContent = 'Pontuação Máxima • 4/4';
+              quizFinalTitle.textContent = 'Mestre da Segurança Digital!';
+              quizFinalMessage.textContent =
+                'Parabéns! Você identificou corretamente todos os cenários de phishing e navegação segura. Continue mantendo esse senso crítico na internet.';
+            } else if (correctCount >= 2) {
+              quizRankBadge.textContent = `Bom Desempenho • ${correctCount}/4`;
+              quizFinalTitle.textContent = 'Você está no caminho certo!';
+              quizFinalMessage.textContent =
+                'Você acertou a maioria dos cenários! Revise as explicações dos itens em que houve dúvida para reconhecer sinais sutis de golpes virtuais.';
+            } else {
+              quizRankBadge.textContent = `Resultado • ${correctCount}/4`;
+              quizFinalTitle.textContent = 'Vale redobrar a atenção aos sinais de alerta!';
+              quizFinalMessage.textContent =
+                'Os golpistas usam urgência e promessas falsas para confundir. Leia as explicações acima e tente novamente para fixar as dicas de proteção.';
+            }
+          } else {
+            quizFinalSummary.classList.add('hidden');
+          }
+        }
+
+        function resetQuiz() {
+          userAnswers = {};
+          updateQuizStats();
+          renderQuiz();
+        }
+
+        if (resetQuizBtn) resetQuizBtn.addEventListener('click', resetQuiz);
+        if (retryQuizBtn) retryQuizBtn.addEventListener('click', resetQuiz);
+
+        // Inicializa estados na carga da página
+        updateHabitIndex();
+        renderQuiz();
+      } catch (error) {
+        console.error('Erro ao inicializar componentes interativos:', error);
+      }
+    });
+  </script>
+</body>
+</html>
